@@ -33,7 +33,7 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 {"id":29,"first_name":"Morrie","last_name":"Rainard","email":"mrainards@yale.edu","shirt_size":"XS","company_name":"Podcat","donation":52},
 {"id":30,"first_name":"Fidel","last_name":"Roskelly","email":"froskellyt@ibm.com","shirt_size":"XS","company_name":"Avavee","donation":5},
 {"id":31,"first_name":"Toni","last_name":"MacSweeney","email":"tmacsweeneyu@parallels.com","shirt_size":"M","company_name":"Jaloo","donation":82},
-{"id":32,"first_name":"Jessey","last_name":"Walhedd","email":"jwalheddv@slashdot.org","shirt_size":"L","company_name":"Trilia","donation":5},
+{"id":32,"first_name":"Jessey","last_name":"Walhedd","email":"jwalheddv@slashdot.org","shirt_size":"L","company_name":"Trilia","donation":1},
 {"id":33,"first_name":"Karola","last_name":"Piper","email":"kpiperw@ucsd.edu","shirt_size":"3XL","company_name":"Yombu","donation":110},
 {"id":34,"first_name":"Marley","last_name":"Mitchenson","email":"mmitchensonx@webeden.co.uk","shirt_size":"M","company_name":"Zoonoodle","donation":97},
 {"id":35,"first_name":"Marrilee","last_name":"Thrasher","email":"mthrashery@opensource.org","shirt_size":"XL","company_name":"Bluejam","donation":17},
@@ -72,13 +72,28 @@ let largeShirts = runners.filter(({shirt_size}) => shirt_size == 'L');
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = runners.reduce((totalDonation, {donation}) => donation + totalDonation, 0);
-console.log(ticketPriceTotal);
+//  console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// Contact list
+const contactList = []
+runners.forEach(({email, first_name, last_name, company_name}) => { contactList.push({email, first_name, last_name, company_name})}) ;
 
+// console.log(contactList);
 // Problem 2
+const bigSpender = runners.filter(({donation}) => donation > 150 ).map(({first_name, last_name}) => `${first_name} ${last_name}`);
 
+// console.log(bigSpender);
 // Problem 3
+const companyTeams = runners.reduce( (acc, {company_name, first_name, last_name}) => {
+    if (!acc[company_name]) {
+      acc[company_name] = [];
+    }
+    acc[company_name].push(`${first_name} ${last_name}`);
+    return acc;
+  }, {});
+
+  console.log(companyTeams);
