@@ -101,5 +101,6 @@ numbers.reduce((accumulator, currentValue, currentIndex) => {
 	console.log('This is the Current array item Value:', currentValue);
 	console.log('This is the Current Index in the array:', currentIndex);
 	console.log(`Accumulator now equels Accumulator + Current Value or: ${accumulator + currentValue}`);
+	console.log('This is where step to the next item in the array .reduce() is called on.');
 	return (accumulator += currentValue);
 }, 0);
